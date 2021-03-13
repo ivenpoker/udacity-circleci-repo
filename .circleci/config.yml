@@ -9,6 +9,7 @@ jobs:
         steps:
             - node/install
             - checkout
+            - aws-cli/setup
             -   run:
                     name: Front-End Install
                     command: |
@@ -25,20 +26,14 @@ jobs:
                     name: Back-End Build
                     command: |
                         npm run backend:build
-#    deploy:
-#        docker:
-#            -   image: "cimg/base:stable"
-#        steps:
-#            - node/install
-#            -   run:
-#                    name: Front-End Deploy
-#                    command: |
-#                        npm run frontend:deploy
+            - run:
+                  name: Front-End Deploy
+                  command: |
+                      npm run frontend:deploy
 workflows:
     udagram:
         jobs:
             - build
-#            - deploy
 
 
 
